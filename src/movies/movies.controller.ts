@@ -16,7 +16,7 @@ export class MoviesController {
     return 'get all movies';
   }
 
-  @Get('/:id')
+  @Get(':id')
   getOneById(@Param('id') id: string) {
     return `get one movie by ${id}`;
   }
@@ -26,7 +26,7 @@ export class MoviesController {
     return movieData;
   }
 
-  @Patch('/:id')
+  @Patch(':id')
   update(@Param('id') id: string, @Body() updateData) {
     return {
       updatedMovie: id,
@@ -34,7 +34,7 @@ export class MoviesController {
     };
   }
 
-  @Delete('/:id')
+  @Delete(':id')
   remove(@Param('id') id: string) {
     return `remove a movie with the id: ${id}`;
   }
