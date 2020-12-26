@@ -9,6 +9,10 @@ export class MoviesService {
     return this.movies;
   }
 
+  search(year: string): Movie[] {
+    return this.movies.filter((movie) => movie.year >= parseInt(year));
+  }
+
   getOneById(id: string): Movie {
     const movie = this.movies.find((movie) => movie.id === parseInt(id));
     if (!movie) {
@@ -21,7 +25,13 @@ export class MoviesService {
     this.movies.push({ id: this.movies.length + 1, ...movieData });
   }
 
-  delete(id: string) {
+  update(id: string, updateData) {
+    const movie = this.getOneById(id);
+    this.remove(id);
+    this.movies.push({ ...movie, ...updateData });
+  }
+
+  remove(id: string) {
     this.getOneById(id);
     this.movies = this.movies.filter((movie) => movie.id !== parseInt(id));
     return true;
