@@ -1,3 +1,5 @@
+import { Movie } from './entities/movie.entity';
+import { MoviesService } from './movies.service';
 import {
   Body,
   Controller,
@@ -11,9 +13,12 @@ import {
 
 @Controller('movies')
 export class MoviesController {
+  // service 와 연결
+  constructor(private readonly moviesService: MoviesService) {}
+
   @Get()
-  getAll() {
-    return 'get all movies';
+  getAll(): Movie[] {
+    return this.moviesService.getAll();
   }
 
   @Get('search')
