@@ -27,13 +27,13 @@ export class MoviesController {
   }
 
   @Get(':id')
-  getOneById(@Param('id') id: string) {
-    return `get one movie by ${id}`;
+  getOneById(@Param('id') id: string): Movie {
+    return this.moviesService.getOneById(id);
   }
 
   @Post()
   create(@Body() movieData) {
-    return movieData;
+    return this.moviesService.create(movieData);
   }
 
   @Patch(':id')
@@ -46,6 +46,6 @@ export class MoviesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return `remove a movie with the id: ${id}`;
+    return this.moviesService.delete(id);
   }
 }
