@@ -6,14 +6,19 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
-import bodyParser from 'body-parser';
 
 @Controller('movies')
 export class MoviesController {
   @Get()
   getAll() {
     return 'get all movies';
+  }
+
+  @Get('search')
+  search(@Query('year') searchingYear: string) {
+    return `searching for movies made after: ${searchingYear}`;
   }
 
   @Get(':id')
